@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "kontoapi-rails"
   gem.homepage = "http://github.com/GeneralScripting/kontoapi-rails"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A wrapper for the Konto API (https://www.kontoapi.de/) providing model validation.}
+  gem.description = %Q{This library is a wrapper for the Konto API (https://www.kontoapi.de/). It provides a validation method for models that checks if a given account number and bank code represent a valid combination.}
   gem.email = "jan@schwenzien.org"
   gem.authors = ["Jan Schwenzien"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
