@@ -14,11 +14,11 @@ module KontoAPI
       record_options  = options.reverse_merge(DEFAULTS)
       account_number  = record.send(:"#{record_options[:account_number_field]}")
       bank_code       = record.send(:"#{record_options[:bank_code_field]}")
-      record.errors[:"#{record_options[:account_number_field]}"] << :invalid  unless KontoAPI::valid?(account_number, bank_code)
+      record.errors.add(:"#{record_options[:account_number_field]}", :invalid) unless KontoAPI::valid?(account_number, bank_code)
     rescue Timeout::Error => ex
       case record_options[:on_timeout]
       when :fail
-        record.errors[:"#{record_options[:account_number_field]}"] << :timeout
+        record.errors.add(:"#{record_options[:account_number_field]}", :timeout)
       when :ignore
         # nop
       when :retry

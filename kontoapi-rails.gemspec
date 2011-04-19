@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "init.rb",
+    "kontoapi-rails.gemspec",
     "lib/kontoapi-rails.rb",
     "lib/kontoapi-rails/config.rb",
     "lib/kontoapi-rails/orm/active_record_extension.rb",
