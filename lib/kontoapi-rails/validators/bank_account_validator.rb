@@ -3,8 +3,6 @@ require 'active_model/validator'
 module KontoAPI
   class BankAccountValidator < ActiveModel::Validator
 
-    DEFAULTS = 
-
     def validate(record)
       account_number  = record.send(:"#{options[:account_number_field]}")
       bank_code       = record.send(:"#{options[:bank_code_field]}")
