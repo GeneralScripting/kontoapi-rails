@@ -30,14 +30,35 @@ Then, in one of the models you want to validate bank account data with:
     
       # account data validation
       # (really just a shortcut for `validates_with KontoAPI::BankAccountValidator`)
-      # takes any of the following options (the defaults are shown here):
+      # Takes any of the following options (the defaults are shown here):
       #   :account_number_field => :account_number,
       #   :bank_code_field      => :bank_code,
       #   :allow_nil            => true,    <-- don't validate if one of them is nil
       #   :on_timeout           => :ignore  <-- do nothing if a timeout occurs, others:
       #                            :fail    <-- throw a validation error
       #                            :retry   <-- (not supported yet)
+      #
+      # If validations fails, an error within the standard ActiveRecord I18n scopes
+      # will be added to the :account_number_field:
+      # :invalid <-- if it is invalid
+      # :timeout <-- if :on_timeout is set to :fail and the api call timed out
       validates_account_data
+    
+    end
+
+And if you want to autocomplete the bank name:
+
+    class PaymentData < ActiveRecord::Base
+
+      # bank name autocompletion
+      # takes any of the following options (the defaults are shown here):
+      #   :bank_code_field      => :bank_code,
+      #   :bank_name_field      => :bank_name,
+      #   :always_overwrite     => false,         <-- autocomplete even if bank name already present
+      #   :on_timeout           => :ignore        <-- do nothing if a timeout occurs, others:
+      #                            :retry         <-- (not supported yet)
+      #                             'any string'  <-- use this string as the value
+      autocomplete_bank_name
     
     end
 
