@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{kontoapi-rails}
-  s.version = "0.0.1"
+  s.name = "kontoapi-rails"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jan Schwenzien"]
-  s.date = %q{2011-04-20}
-  s.description = %q{This library is a wrapper for the Konto API (https://www.kontoapi.de/). It provides a validation method for models that checks if a given account number and bank code represent a valid combination.}
-  s.email = %q{jan@schwenzien.org}
+  s.date = "2012-04-05"
+  s.description = "This library is a wrapper for the Konto API (https://www.kontoapi.de/). It provides a validation method for models that checks if a given account number and bank code represent a valid combination."
+  s.email = "jan@schwenzien.org"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.markdown"
@@ -36,11 +36,11 @@ Gem::Specification.new do |s|
     "spec/kontoapi-rails_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/GeneralScripting/kontoapi-rails}
+  s.homepage = "http://github.com/GeneralScripting/kontoapi-rails"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.7.2}
-  s.summary = %q{A wrapper for the Konto API (https://www.kontoapi.de/) providing model validation.}
+  s.rubygems_version = "1.8.15"
+  s.summary = "A wrapper for the Konto API (https://www.kontoapi.de/) providing model validation."
   s.test_files = [
     "spec/kontoapi-rails_spec.rb",
     "spec/spec_helper.rb"
@@ -50,14 +50,14 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, ["~> 3.0.0"])
+      s.add_runtime_dependency(%q<rails>, [">= 3.0.0"])
       s.add_runtime_dependency(%q<kontoapi-ruby>, [">= 0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.3.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
-      s.add_dependency(%q<rails>, ["~> 3.0.0"])
+      s.add_dependency(%q<rails>, [">= 3.0.0"])
       s.add_dependency(%q<kontoapi-ruby>, [">= 0"])
       s.add_dependency(%q<rspec>, ["~> 2.3.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
@@ -65,7 +65,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rails>, ["~> 3.0.0"])
+    s.add_dependency(%q<rails>, [">= 3.0.0"])
     s.add_dependency(%q<kontoapi-ruby>, [">= 0"])
     s.add_dependency(%q<rspec>, ["~> 2.3.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
