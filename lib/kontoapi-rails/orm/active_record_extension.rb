@@ -50,11 +50,11 @@ module KontoAPI
           value = send(field)
           return true if options[:allow_nil] && value.nil?
           begin
-            record.errors.add(field, :invalid) unless KontoAPI::valid?( :iban => value )
+            errors.add(field, :invalid) unless KontoAPI::valid?( :iban => value )
           rescue Timeout::Error => ex
             case options[:on_timeout]
             when :fail
-              record.errors.add(field, :timeout)
+              errors.add(field, :timeout)
             when :ignore
               # nop
             end
@@ -70,11 +70,11 @@ module KontoAPI
           value = send(field)
           return true if options[:allow_nil] && value.nil?
           begin
-            record.errors.add(field, :invalid) unless KontoAPI::valid?( :bic => send(field) )
+            errors.add(field, :invalid) unless KontoAPI::valid?( :bic => send(field) )
           rescue Timeout::Error => ex
             case options[:on_timeout]
             when :fail
-              record.errors.add(field, :timeout)
+              errors.add(field, :timeout)
             when :ignore
               # nop
             end
