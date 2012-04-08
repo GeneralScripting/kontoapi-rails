@@ -42,6 +42,46 @@ module KontoAPI
         end
         before_save :autocomplete_bank_name
       end
+
+      def validates_iban(field, options={})
+        options.symbolize_keys!
+        options.reverse_merge!( :allow_nil => true, :on_timeout => :ignore )
+        define_method :iban_validation do
+          value = send(field)
+          return true if options[:allow_nil] && value.nil?
+          begin
+            record.errors.add(field, :invalid) unless KontoAPI::valid?( :iban => value )
+          rescue Timeout::Error => ex
+            case options[:on_timeout]
+            when :fail
+              record.errors.add(field, :timeout)
+            when :ignore
+              # nop
+            end
+          end
+        end
+        validate :iban_validation
+      end
+
+      def validates_bic(field, options={})
+        options.symbolize_keys!
+        options.reverse_merge!( :allow_nil => true, :on_timeout => :ignore )
+        define_method :bic_validation do
+          value = send(field)
+          return true if options[:allow_nil] && value.nil?
+          begin
+            record.errors.add(field, :invalid) unless KontoAPI::valid?( :bic => send(field) )
+          rescue Timeout::Error => ex
+            case options[:on_timeout]
+            when :fail
+              record.errors.add(field, :timeout)
+            when :ignore
+              # nop
+            end
+          end
+        end
+        validate :bic_validation
+      end
     end
 
   end

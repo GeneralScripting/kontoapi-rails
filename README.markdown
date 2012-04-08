@@ -43,6 +43,24 @@ Then, in one of the models you want to validate bank account data with:
       # :invalid <-- if it is invalid
       # :timeout <-- if :on_timeout is set to :fail and the api call timed out
       validates_account_data
+      
+      # IBAN validation
+      # Check if the given IBAN is valid
+      # Takes any of the following options (the defaults are shown here):
+      #   :allow_nil            => true,    <-- don't validate if nil
+      #   :on_timeout           => :ignore  <-- do nothing if a timeout occurs, others:
+      #                            :fail    <-- throw a validation error
+      #                            :retry   <-- (not supported yet)
+      validates_iban :iban
+      
+      # BIC validation
+      # Check if the given BIC exists
+      # Takes any of the following options (the defaults are shown here):
+      #   :allow_nil            => true,    <-- don't validate if nil
+      #   :on_timeout           => :ignore  <-- do nothing if a timeout occurs, others:
+      #                            :fail    <-- throw a validation error
+      #                            :retry   <-- (not supported yet)
+      validates_bic :bic
     
     end
 

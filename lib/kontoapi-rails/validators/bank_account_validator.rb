@@ -7,7 +7,7 @@ module KontoAPI
       account_number  = record.send(:"#{options[:account_number_field]}")
       bank_code       = record.send(:"#{options[:bank_code_field]}")
       return true if options[:allow_nil] && (account_number.nil? || bank_code.nil?)
-      record.errors.add(:"#{options[:account_number_field]}", :invalid) unless KontoAPI::valid?(account_number, bank_code)
+      record.errors.add(:"#{options[:account_number_field]}", :invalid) unless KontoAPI::valid?( :ktn => account_number, :blz => bank_code )
     rescue Timeout::Error => ex
       case options[:on_timeout]
       when :fail
