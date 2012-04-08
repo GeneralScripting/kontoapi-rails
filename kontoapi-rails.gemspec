@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jan Schwenzien"]
   s.date = "2012-04-08"
-  s.description = "This library is a wrapper for the Konto API (https://www.kontoapi.de/). It provides a validation method for models that checks if a given account number and bank code represent a valid combination, autocompletes bank names and validates IBAN and BIC codes."
+  s.description = "This library is a wrapper for the Konto API (https://www.kontoapi.de/). It provides a validation method for models that checks if a given account number and bank code represent a valid combination."
   s.email = "jan@schwenzien.org"
   s.extra_rdoc_files = [
     "LICENSE",
