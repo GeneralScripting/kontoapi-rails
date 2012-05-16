@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/GeneralScripting/kontoapi-rails"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.15"
+  s.rubygems_version = "1.8.23"
   s.summary = "A wrapper for the Konto API (https://www.kontoapi.de/) providing model validation."
   s.test_files = [
     "spec/kontoapi-rails_spec.rb",

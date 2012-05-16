@@ -27,8 +27,10 @@ module KontoAPI
         define_method :autocomplete_bank_name do
           current_value = send(:"#{options[:bank_name_field]}")
           blz           = send(:"#{options[:bank_code_field]}")
+          blz_changed   = send(:"#{options[:bank_code_field]}_changed?")
           begin
-            self.send(:"#{options[:bank_name_field]}=", KontoAPI::bank_name(blz)) if (options[:always_overwrite] || current_value.blank?) && blz.present?
+            self.send(:"#{options[:bank_name_field]}=", KontoAPI::bank_name(blz)) if (options[:always_overwrite] || current_value.blank?) && blz_changed
+            return true
           rescue Timeout::Error => ex
             case options[:on_timeout]
             when String
