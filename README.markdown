@@ -42,7 +42,7 @@ Then, in one of the models you want to validate bank account data with:
       # will be added to the :account_number_field:
       # :invalid <-- if it is invalid
       # :timeout <-- if :on_timeout is set to :fail and the api call timed out
-      validates_account_data
+      validates_bank_account
       
       # IBAN validation
       # Check if the given IBAN is valid
