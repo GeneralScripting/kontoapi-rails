@@ -6,7 +6,7 @@ module KontoAPI
     def validate(record)
       account_number  = record.send(:"#{options[:account_number_field]}")
       bank_code       = record.send(:"#{options[:bank_code_field]}")
-      return true unless send(:"#{options[:account_number_field]}_changed?") || send(:"#{options[:bank_code_field]}_changed?")
+      return true unless record.send(:"#{options[:account_number_field]}_changed?") || record.send(:"#{options[:bank_code_field]}_changed?")
       return true if options[:allow_nil] && (account_number.nil? || bank_code.nil?)
       record.errors.add(:"#{options[:account_number_field]}", :invalid) unless KontoAPI::valid?( :ktn => account_number, :blz => bank_code )
     rescue Timeout::Error => ex
