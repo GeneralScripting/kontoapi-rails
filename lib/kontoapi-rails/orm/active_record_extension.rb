@@ -50,6 +50,7 @@ module KontoAPI
         options.reverse_merge!( :allow_nil => true, :on_timeout => :ignore )
         define_method :iban_validation do
           value = send(field)
+          return true unless send(:"#{field}_changed?")
           return true if options[:allow_nil] && value.nil?
           begin
             errors.add(field, :invalid) unless KontoAPI::valid?( :iban => value )
@@ -70,6 +71,7 @@ module KontoAPI
         options.reverse_merge!( :allow_nil => true, :on_timeout => :ignore )
         define_method :bic_validation do
           value = send(field)
+          return true unless send(:"#{field}_changed?")
           return true if options[:allow_nil] && value.nil?
           begin
             errors.add(field, :invalid) unless KontoAPI::valid?( :bic => send(field) )
