@@ -83,5 +83,5 @@ And if you want to autocomplete the bank name:
 Copyright
 ---------
 
-Copyright (c) 2011 General Scripting - Jan Schwenzien. See LICENSE for further details.
+Copyright (c) 2011-2012 General Scripting UG (haftungsbeschränkt). See LICENSE for further details.
 
