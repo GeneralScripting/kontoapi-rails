@@ -27,7 +27,7 @@ module KontoAPI
         define_method :autocomplete_bank_name do
           current_value = send(:"#{options[:bank_name_field]}")
           blz           = send(:"#{options[:bank_code_field]}")
-          blz_changed   = send(:"#{options[:bank_code_field]}_changed?")
+          blz_changed   = (respond_to?(:"#{options[:bank_code_field]}_changed?") && send(:"#{options[:bank_code_field]}_changed?")) || (respond_to?(:"encrypted_#{options[:bank_code_field]}_changed?") && send(:"encrypted_#{options[:bank_code_field]}_changed?"))
           begin
             self.send(:"#{options[:bank_name_field]}=", KontoAPI::bank_name(blz)) if (options[:always_overwrite] || current_value.blank?) && blz_changed
             return true
@@ -50,7 +50,8 @@ module KontoAPI
         options.reverse_merge!( :allow_nil => true, :on_timeout => :ignore )
         define_method :iban_validation do
           value = send(field)
-          return true unless send(:"#{field}_changed?")
+          return true if respond_to?(:"#{field}_changed?") && !send(:"#{field}_changed?")
+          return true if respond_to?(:"encrypted_#{field}_changed?") && !send(:"encrypted_#{field}_changed?")
           return true if options[:allow_nil] && value.nil?
           begin
             errors.add(field, :invalid) unless KontoAPI::valid?( :iban => value )
@@ -71,7 +72,8 @@ module KontoAPI
         options.reverse_merge!( :allow_nil => true, :on_timeout => :ignore )
         define_method :bic_validation do
           value = send(field)
-          return true unless send(:"#{field}_changed?")
+          return true if respond_to?(:"#{field}_changed?") && !send(:"#{field}_changed?")
+          return true if respond_to?(:"encrypted_#{field}_changed?") && !send(:"encrypted_#{field}_changed?")
           return true if options[:allow_nil] && value.nil?
           begin
             errors.add(field, :invalid) unless KontoAPI::valid?( :bic => send(field) )
