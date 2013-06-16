@@ -2,7 +2,7 @@ Konto API Rails Validator
 =========================
 
 [![Gem Version](https://badge.fury.io/rb/kontoapi-rails.png)](http://badge.fury.io/rb/kontoapi-rails)
-
+[![Code Climate](https://codeclimate.com/github/GeneralScripting/kontoapi-rails.png)](https://codeclimate.com/github/GeneralScripting/kontoapi-rails)
 
 This library is a wrapper for the Konto API (https://www.kontoapi.de/).
 It provides a validation method for ActiveRecord models that checks if a given account number and bank code represent a valid combination.
@@ -86,5 +86,5 @@ And if you want to autocomplete the bank name:
 Copyright
 ---------
 
-Copyright (c) 2011-2012 General Scripting UG (haftungsbeschränkt). See LICENSE for further details.
+Copyright (c) 2011-2013 General Scripting UG (haftungsbeschränkt). See LICENSE for further details.
 
