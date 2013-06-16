@@ -9,14 +9,7 @@ module KontoAPI
       return true if stop?(record, account_number, bank_code, options)
       record.errors.add(:"#{options[:account_number_field]}", :invalid) unless KontoAPI::valid?( :ktn => account_number, :blz => bank_code )
     rescue Timeout::Error => ex
-      case options[:on_timeout]
-      when :fail
-        record.errors.add(:"#{options[:account_number_field]}", :timeout)
-      when :ignore
-        # nop
-      when :retry
-        raise 'not implemented yet'
-      end
+      handle_timeout(ex, record, options)
     end
 
     def change_method(record, field)
@@ -30,6 +23,17 @@ module KontoAPI
       bank_code_changed      = record.send( change_method(record, options[:bank_code_field]) )
       return true unless account_number_changed || bank_code_changed
       return true if options[:allow_nil] && (account_number.nil? || bank_code.nil?)
+    end
+
+    def handle_timeout(ex, record, options)
+      case options[:on_timeout]
+      when :fail
+        record.errors.add(:"#{options[:account_number_field]}", :timeout)
+      when :ignore
+        # nop
+      when :retry
+        raise 'not implemented yet'
+      end
     end
 
   end
