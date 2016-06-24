@@ -13,8 +13,6 @@ module KontoAPI
       end
       if defined? ::Mongoid
         require File.join(File.dirname(__FILE__), 'orm/mongoid_extension')
-        #::Mongoid::Document.send :include, KontoAPI::MongoidExtension::Document
-        #::Mongoid::Criteria.send :include, KontoAPI::MongoidExtension::Criteria
       end
     end
   end

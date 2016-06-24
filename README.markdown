@@ -18,10 +18,11 @@ USAGE
 Add an initializer (e.g. kontoapi.rb) in `config/initializers`:
 
     KontoAPI.setup do |config|
-      # mendatory
+      # mandatory
       config.api_key = '<your-api-key>' # get one at https://www.kontoapi.de/
       # optional (with defaults)
       config.timeout = 10
+      config.disable_for = ['development', 'test']
     end
 
 Then, in one of the models you want to validate bank account data with:

@@ -7,6 +7,7 @@ module KontoAPI
 
     module ClassMethods
       def validates_bank_account(options={})
+        return if KontoAPI::Config.disable_for.include?(::Rails.env)
         options.symbolize_keys!
         options.reverse_merge!(
           :account_number_field => :account_number,
@@ -18,6 +19,7 @@ module KontoAPI
       end
 
       def autocomplete_bank_name(options={})
+        return if KontoAPI::Config.disable_for.include?(::Rails.env)
         options.symbolize_keys!
         options.reverse_merge!(
           :bank_code_field  => :bank_code,
@@ -46,6 +48,7 @@ module KontoAPI
       end
 
       def validates_iban(field, options={})
+        return if KontoAPI::Config.disable_for.include?(::Rails.env)
         options.symbolize_keys!
         options.reverse_merge!( :allow_nil => true, :on_timeout => :ignore )
         define_method :iban_validation do
@@ -68,6 +71,7 @@ module KontoAPI
       end
 
       def validates_bic(field, options={})
+        return if KontoAPI::Config.disable_for.include?(::Rails.env)
         options.symbolize_keys!
         options.reverse_merge!( :allow_nil => true, :on_timeout => :ignore )
         define_method :bic_validation do
