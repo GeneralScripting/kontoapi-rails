@@ -18,7 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.summary = %Q{A wrapper for the Konto API (https://www.kontoapi.de/) providing model validation.}
   gem.description = %Q{This library is a wrapper for the Konto API (https://www.kontoapi.de/). It provides a validation method for models that checks if a given account number and bank code represent a valid combination.}
   gem.email = "jan@schwenzien.org"
-  gem.authors = ["Jan Schwenzien", "Jiayi Zheng"]
+  gem.authors = ["Jan Schwenzien", "Jiayi Zheng", "Fabien Croissant Tortilla Garcia"]
 end
 Jeweler::RubygemsDotOrgTasks.new
 
