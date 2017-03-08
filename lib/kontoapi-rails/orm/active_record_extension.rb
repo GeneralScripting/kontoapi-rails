@@ -80,7 +80,7 @@ module KontoAPI
           return true if respond_to?(:"encrypted_#{field}_changed?") && !send(:"encrypted_#{field}_changed?")
           return true if options[:allow_nil] && value.nil?
           begin
-            errors.add(field, :invalid) unless KontoAPI::valid?( :bic => send(field) )
+            errors.add(field, :invalid) unless KontoAPI::valid?( :bic => value )
           rescue Timeout::Error => ex
             case options[:on_timeout]
             when :fail
@@ -91,6 +91,37 @@ module KontoAPI
           end
         end
         validate :bic_validation
+      end
+
+      def validates_iban_and_bic(iban_field, bic_field, options={})
+        return if KontoAPI::Config.disable_for.include?(::Rails.env)
+        options.symbolize_keys!
+        options.reverse_merge!( :allow_nil => true, :on_timeout => :ignore )
+        define_method :iban_and_bic_validation do
+          iban_value = send(iban_field)
+          bic_value = send(bic_field)
+          return true if [iban_field, bic_field].all? do |field|
+            respond_to?(:"#{field}_changed?") && !send(:"#{field}_changed?")
+          end
+          return true if [iban_field, bic_field].all? do |field|
+            respond_to?(:"encrypted_#{field}_changed?") && !send(:"encrypted_#{field}_changed?")
+          end
+          return true if options[:allow_nil] && iban_value.nil? && bic_value.nil?
+          begin
+            unless KontoAPI::valid?( :iban => iban_value, :bic => bic_value )
+              errors.add(iban_field, :invalid)
+              errors.add(bic_field, :invalid)
+            end
+          rescue Timeout::Error => ex
+            case options[:on_timeout]
+            when :fail
+              errors.add(field, :timeout)
+            when :ignore
+              # nop
+            end
+          end
+        end
+        validate :iban_and_bic_validation
       end
     end
 

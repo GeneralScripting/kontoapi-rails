@@ -18,11 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.summary = %Q{A wrapper for the Konto API (https://www.kontoapi.de/) providing model validation.}
   gem.description = %Q{This library is a wrapper for the Konto API (https://www.kontoapi.de/). It provides a validation method for models that checks if a given account number and bank code represent a valid combination.}
   gem.email = "jan@schwenzien.org"
-  gem.authors = ["Jan Schwenzien"]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  gem.authors = ["Jan Schwenzien", "Jiayi Zheng"]
 end
 Jeweler::RubygemsDotOrgTasks.new
 

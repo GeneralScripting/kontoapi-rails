@@ -65,6 +65,15 @@ Then, in one of the models you want to validate bank account data with:
       #                            :fail    <-- throw a validation error
       #                            :retry   <-- (not supported yet)
       validates_bic :bic
+
+      # Combined IBAN & BIC validation
+      # Check if the given BIC exists, the IBAN is valid and if they match
+      # Takes any of the following options (the defaults are shown here):
+      #   :allow_nil            => true,    <-- don't validate if both are nil
+      #   :on_timeout           => :ignore  <-- do nothing if a timeout occurs, others:
+      #                            :fail    <-- throw a validation error
+      #                            :retry   <-- (not supported yet)
+      validates_iban_and_bic :iban, :bic
     
     end
 
